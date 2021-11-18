@@ -1,0 +1,31 @@
+const fs = require("fs");
+
+const filePath = process.platform === "linux" ? "./input.txt" : "/dev/stdin"; //제 개발환경은 리눅스이기에 input.txt를 앞에 두었습니다.
+
+// const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt'; // 실제 백준사이트에 제출할 때는 위에 filePath를 삭제하고 이 부분을 입력하면 됩니다.
+
+let input = fs.readFileSync(filePath).toString().split("\n");
+
+// console.log(input);
+
+input = input[0];
+
+input = input.split(" ").map((item) => +item);
+
+// console.log(input);
+
+solution(input[0], input[1]);
+
+function solution(A, B) {
+  if (A === 0) {
+    if (B < 45) {
+      return console.log(`23 ${B + 15}`);
+    } else if (B >= 45) {
+      return console.log(`0 ${B - 45}`);
+    }
+  } else if (B < 45) {
+    return console.log(`${A - 1} ${B + 15}`);
+  } else if (B >= 45) {
+    return console.log(`${A} ${B - 45}`);
+  }
+}
